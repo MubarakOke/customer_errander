@@ -21,6 +21,7 @@ import ErranderRunning from "./pages/Errander/home/running";
 import LoadingOverlay from 'react-loading-overlay'
 import SyncLoader from 'react-spinners/SyncLoader'
 import { Toaster } from "react-hot-toast";
+import Blog from "./pages/customer/blog/blog"
 // import {toast, ToastContainer} from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 // toast.configure()
@@ -31,65 +32,76 @@ const App = () => {
       {/* ----------------Notification Begins------------- */}
       <LoadingOverlay
         active={false}
-        spinner={<SyncLoader color={'#0E4E48'}/>}
+        spinner={<SyncLoader color={"#0E4E48"} />}
         styles={{
           overlay: (base) => ({
             ...base,
-            position: 'fixed'
-            })
-          }}
-       >
+            position: "fixed",
+          }),
+        }}
+      >
+        <div>
+          <Toaster
+            toastOptions={{
+              success: {
+                duration: 5000,
+                position: "top-center",
+                style: { background: "#0E4E48", color: "white" },
+              },
+              error: {
+                duration: 5000,
+                position: "top-center",
+                style: { background: "red", color: "white" },
+              },
+            }}
+            containerStyle={{ top: 50 }}
+          />
+        </div>
+        {/* ----------------Notification Ends------------- */}
+        {/* -----------Routes Begins--------------- */}
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/customer/orderdetails" element={<OrderDetails />} />
+          <Route path="/customer/blog" element={<Blog />} />
+          <Route path="/customer" element={<Home />} />
 
-      <div>
-        <Toaster
-          toastOptions={{
-            success: {
-              duration: 5000,
-              position: "top-center",
-              style: { background: "#0E4E48", color: "white" },
-            },
-            error: {
-              duration: 5000,
-              position: "top-center",
-              style: { background: "red", color: "white" },
-            },
-          }}
-          containerStyle={{ top: 50 }}
-        />
-      </div>
-      {/* ----------------Notification Ends------------- */}
-      {/* -----------Routes Begins--------------- */}
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/customer/orderdetails" element={<OrderDetails />} />
+          <Route path="/customer/home" element={<Home />}>
+            <Route index element={<Order />} />
+            <Route path="/customer/home/order" element={<Order />} />
+            <Route path="/customer/home/running" element={<Running />} />
+            <Route path="/customer/home/history" element={<History />} />
+          </Route>
+          <Route path="/errander/home" element={<ErranderHome />}>
+            <Route index element={<Errand />} />
+            <Route path="/errander/home/errand" element={<Errand />} />
+            <Route
+              path="/errander/home/running"
+              element={<ErranderRunning />}
+            />
+            <Route
+              path="/errander/home/history"
+              element={<ErranderHistory />}
+            />
+          </Route>
+          <Route path="/customer/profile" element={<Profile />} />
+          <Route path="/errander/profile" element={<ErranderProfile />} />
 
-        <Route path="/customer/home" element={<Home />}>
-          <Route index element={<Order />} />
-          <Route path="/customer/home/order" element={<Order />} />
-          <Route path="/customer/home/running" element={<Running />} />
-          <Route path="/customer/home/history" element={<History />} />
-        </Route>
-        <Route path="/errander/home" element={<ErranderHome />}>
-          <Route index element={<Errand />} />
-          <Route path="/errander/home/errand" element={<Errand />} />
-          <Route path="/errander/home/running" element={<ErranderRunning />} />
-          <Route path="/errander/home/history" element={<ErranderHistory />} />
-        </Route>
-        <Route path="/customer/profile" element={<Profile />} />
-        <Route path="/errander/profile" element={<ErranderProfile />} />
+          <Route path="/customer/createorder" element={<CreateOrder />} />
 
-        <Route path="/customer/blog" element={null} />
-        <Route path="/customer/zxcv" element={null} />
-        <Route path="/customer/createorder" element={<CreateOrder />} />
+          <Route path="/errander/signup" element={<ErranderSignUp />} />
 
-        <Route path="/errander/signup" element={<ErranderSignUp />} />
-
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/customerprofileedit" element={<CustomerProfileEdit />} />
-        <Route path="/erranderprofileedit" element={<ErranderProfileEdit />} />
-        <Route path="/customer/signup" element={<CustomerSignUp />} />
-      </Routes>
-      {/* -----------Routes Ends--------------- */}
+          <Route path="/admin" element={<Admin />} />
+          <Route
+            path="/customerprofileedit"
+            element={<CustomerProfileEdit />}
+          />
+          <Route
+            path="/erranderprofileedit"
+            element={<ErranderProfileEdit />}
+          />
+          <Route path="/customer/signup" element={<CustomerSignUp />} />
+        </Routes>
+        {/* -----------Routes Ends--------------- */}
       </LoadingOverlay>
     </div>
   );
