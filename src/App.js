@@ -22,6 +22,7 @@ import LoadingOverlay from 'react-loading-overlay'
 import SyncLoader from 'react-spinners/SyncLoader'
 import { Toaster } from "react-hot-toast";
 import Blog from "./pages/customer/blog/blog"
+import Comments from './pages/customer/blog/comments'
 // import {toast, ToastContainer} from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 // toast.configure()
@@ -63,6 +64,8 @@ const App = () => {
           <Route path="/" element={<Login />} />
           <Route path="/customer/orderdetails" element={<OrderDetails />} />
           <Route path="/customer/blog" element={<Blog />} />
+          <Route path="/customer/blog/comments" element={<Comments />} />
+
           <Route path="/customer" element={<Home />} />
 
           <Route path="/customer/home" element={<Home />}>
